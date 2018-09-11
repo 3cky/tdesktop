@@ -37,23 +37,26 @@ QImage createIconMask(const IconMask *mask, DBIScale scale) {
 	// images are layouted like this:
 	// 200x 100x
 	// 150x 125x
+	// 250x
+	// 300x
 	int width = maskImage.width() / 3;
-	int height = qRound((maskImage.height() * 2) / 7.);
+	int height = maskImage.height() / 9;
 	auto r = QRect(0, 0, width * 2, height * 2);
 	if (!cRetina() && scale != dbisTwo) {
-		if (scale == dbisOne) {
-			r = QRect(width * 2, 0, width, height);
-		} else {
-			int width125 = pxAdjust(width, 5);
-			int height125 = pxAdjust(height, 5);
-			int width150 = pxAdjust(width, 6);
-			int height150 = pxAdjust(height, 6);
-			if (scale == dbisOneAndQuarter) {
-				r = QRect(width150, height * 2, width125, height125);
-			} else {
-				r = QRect(0, height * 2, width150, height150);
-			}
-		}
+		int width125 = pxAdjust(width, 5);
+		int height125 = pxAdjust(height, 5);
+		int width150 = pxAdjust(width, 6);
+		int height150 = pxAdjust(height, 6);
+		int width250 = pxAdjust(width, 10);
+		int height250 = pxAdjust(height, 10);
+		switch (scale) {
+		    case dbisOne: r = QRect(width * 2, 0, width, height); break;
+		    case dbisOneAndQuarter: r = QRect(width150, height * 2, width125, height125); break;
+		    case dbisOneAndHalf: r = QRect(0, height * 2, width150, height150); break;
+		    case dbisTwoAndHalf: r = QRect(0, height * 2 + height150, width250, height250); break;
+		    case dbisThree: r = QRect(0, height * 6, width * 3, height * 3); break;
+		};
+
 	}
 	return maskImage.copy(r);
 }
@@ -83,6 +86,8 @@ QSize readGeneratedSize(const IconMask *mask, DBIScale scale) {
 			case dbisOneAndQuarter: return QSize(pxAdjust(width, 5), pxAdjust(height, 5));
 			case dbisOneAndHalf: return QSize(pxAdjust(width, 6), pxAdjust(height, 6));
 			case dbisTwo: return QSize(width * 2, height * 2);
+			case dbisTwoAndHalf: return QSize(pxAdjust(width, 10), pxAdjust(height, 10));
+			case dbisThree: return QSize(width * 3, height * 3);
 			}
 		} else {
 			Unexpected("Bad data in generated icon!");

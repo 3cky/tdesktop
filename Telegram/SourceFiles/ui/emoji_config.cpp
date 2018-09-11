@@ -72,6 +72,8 @@ void Init() {
 	case dbisOneAndQuarter: WorkingIndex = 1; break;
 	case dbisOneAndHalf: WorkingIndex = 2; break;
 	case dbisTwo: WorkingIndex = 3; break;
+	case dbisTwoAndHalf: WorkingIndex = 4; break;
+	case dbisThree: WorkingIndex = 5; break;
 	};
 
 	internal::Init();

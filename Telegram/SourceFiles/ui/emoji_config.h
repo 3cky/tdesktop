@@ -124,7 +124,7 @@ inline int ColorIndexFromOldKey(uint64 oldKey) {
 }
 
 inline int Size(int index = Index()) {
-	int sizes[] = { 18, 22, 27, 36, 45 };
+	int sizes[] = { 18, 22, 27, 36, 45, 54, 63 };
 	return sizes[index];
 }
 
@@ -135,6 +135,8 @@ inline QString Filename(int index = Index()) {
 		":/gui/art/emoji_150x.webp",
 		":/gui/art/emoji_200x.webp",
 		":/gui/art/emoji_250x.webp",
+		":/gui/art/emoji_300x.webp",
+		":/gui/art/emoji_350x.webp",
 	};
 	return QString::fromLatin1(EmojiNames[index]);
 }
