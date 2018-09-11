@@ -494,6 +494,8 @@ void Generator::paintComposeArea() {
 	case dbisOneAndQuarter: fakeMargin = 1; break;
 	case dbisOneAndHalf: fakeMargin = 2; break;
 	case dbisTwo: fakeMargin = 4; break;
+	case dbisTwoAndHalf: fakeMargin = 5; break;
+	case dbisThree: fakeMargin = 6; break;
 	}
 
 	auto fieldLeft = _composeArea.x() + st::historyAttach.width + fakeMargin;
