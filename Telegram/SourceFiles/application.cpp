@@ -466,8 +466,12 @@ void launch() {
 		cSetScreenScale(dbisOneAndQuarter);
 	} else if (dpi <= 168) { // 132-144-168
 		cSetScreenScale(dbisOneAndHalf);
-	} else { // 168-192-inf
+	} else if (dpi <= 216) { // 168-192-216
 		cSetScreenScale(dbisTwo);
+	} else if (dpi <= 264) { // 216-240-264
+		cSetScreenScale(dbisTwoAndHalf);
+	} else { // 264-inf
+		cSetScreenScale(dbisThree);
 	}
 
 	auto devicePixelRatio = application()->devicePixelRatio();

@@ -26,6 +26,8 @@ QString scaleLabel(DBIScale scale) {
 	case dbisOneAndQuarter: return qsl("125%");
 	case dbisOneAndHalf: return qsl("150%");
 	case dbisTwo: return qsl("200%");
+	case dbisTwoAndHalf: return qsl("250%");
+	case dbisThree: return qsl("300%");
 	}
 	return QString();
 }
@@ -46,6 +48,8 @@ void ScaleWidget::createControls() {
 	_scale->addSection(scaleLabel(dbisOneAndQuarter));
 	_scale->addSection(scaleLabel(dbisOneAndHalf));
 	_scale->addSection(scaleLabel(dbisTwo));
+	_scale->addSection(scaleLabel(dbisTwoAndHalf));
+	_scale->addSection(scaleLabel(dbisThree));
 	_scale->setActiveSectionFast(cEvalScale(cConfigScale()) - 1);
 	_scale->sectionActivated(
 	) | rpl::start_with_next(
@@ -64,6 +68,8 @@ void ScaleWidget::onAutoChanged() {
 			case dbisOneAndQuarter: newScale = dbisOne; break;
 			case dbisOneAndHalf: newScale = dbisOneAndQuarter; break;
 			case dbisTwo: newScale = dbisOneAndHalf; break;
+			case dbisTwoAndHalf: newScale = dbisTwo; break;
+			case dbisThree: newScale = dbisTwoAndHalf; break;
 			}
 		}
 	}
@@ -110,6 +116,8 @@ void ScaleWidget::scaleChanged() {
 	case 1: newScale = dbisOneAndQuarter; break;
 	case 2: newScale = dbisOneAndHalf; break;
 	case 3: newScale = dbisTwo; break;
+	case 4: newScale = dbisTwoAndHalf; break;
+	case 5: newScale = dbisThree; break;
 	}
 	setScale(newScale);
 }

@@ -399,8 +399,10 @@ enum DBIScale {
 	dbisOneAndQuarter = 2,
 	dbisOneAndHalf = 3,
 	dbisTwo = 4,
+	dbisTwoAndHalf = 5,
+	dbisThree = 6,
 
-	dbisScaleCount = 5,
+	dbisScaleCount = 7,
 };
 
 static const int MatrixRowShift = 40000;

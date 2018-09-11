@@ -113,6 +113,8 @@ T convertScale(T v) {
 		case dbisOneAndQuarter: return qRound(float64(v) * 1.25 - 0.01);
 		case dbisOneAndHalf: return qRound(float64(v) * 1.5 - 0.01);
 		case dbisTwo: return v * 2;
+		case dbisTwoAndHalf: return qRound(float64(v) * 2.5 - 0.01);
+		case dbisThree: return v * 3;
 	}
 	return v;
 }

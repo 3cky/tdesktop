@@ -1214,8 +1214,11 @@ QByteArray iconMaskValuePng(QString filepath) {
 	}
 	QImage png125x = png200x.scaled(structure::data::pxAdjust(png100x.width(), 5), structure::data::pxAdjust(png100x.height(), 5), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 	QImage png150x = png200x.scaled(structure::data::pxAdjust(png100x.width(), 6), structure::data::pxAdjust(png100x.height(), 6), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	// better to have here @3x PNG image for 300x and downscale it for 250x...
+	QImage png250x = png200x.scaled(structure::data::pxAdjust(png100x.width(), 10), structure::data::pxAdjust(png100x.height(), 10), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+	QImage png300x = png200x.scaled(png100x.width() * 3, png100x.height() * 3, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-	QImage composed(png200x.width() + png100x.width(), png200x.height() + png150x.height(), png100x.format());
+	QImage composed(png100x.width() * 3, png100x.height() * 9, png100x.format());
 	{
 		QPainter p(&composed);
 		p.setCompositionMode(QPainter::CompositionMode_Source);
@@ -1224,6 +1227,8 @@ QByteArray iconMaskValuePng(QString filepath) {
 		p.drawImage(png200x.width(), 0, png100x);
 		p.drawImage(0, png200x.height(), png150x);
 		p.drawImage(png150x.width(), png200x.height(), png125x);
+		p.drawImage(0, png200x.height() + png150x.height(), png250x);
+		p.drawImage(0, png100x.height() * 6, png300x);
 	}
 	{
 		QBuffer buffer(&result);

@@ -198,15 +198,15 @@ int Generator::generate() {
 	return 0;
 }
 
-constexpr auto kVariantsCount = 5;
+constexpr auto kVariantsCount = 7;
 constexpr auto kEmojiInRow = 40;
 
 #ifdef SUPPORT_IMAGE_GENERATION
 QImage Generator::generateImage(int variantIndex) {
-	constexpr int kEmojiSizes[kVariantsCount + 1] = { 18, 22, 27, 36, 45, 180 };
-	constexpr bool kBadSizes[kVariantsCount] = { true, true, false, false, false };
-	constexpr int kEmojiFontSizes[kVariantsCount + 1] = { 14, 20, 27, 36, 45, 180 };
-	constexpr int kEmojiDeltas[kVariantsCount + 1] = { 15, 20, 25, 34, 42, 167 };
+	constexpr int kEmojiSizes[kVariantsCount + 1] = { 18, 22, 27, 36, 45, 54, 63, 180 };
+	constexpr bool kBadSizes[kVariantsCount] = { true, true, false, false, false, false, false };
+	constexpr int kEmojiFontSizes[kVariantsCount + 1] = { 14, 20, 27, 36, 45, 54, 63, 180 };
+	constexpr int kEmojiDeltas[kVariantsCount + 1] = { 15, 20, 25, 34, 42, 50, 58, 167 };
 
 	auto emojiCount = data_.list.size();
 	auto columnsCount = kEmojiInRow;
@@ -260,7 +260,7 @@ QImage Generator::generateImage(int variantIndex) {
 }
 
 bool Generator::writeImages() {
-	constexpr const char *variantPostfix[] = { "", "_125x", "_150x", "_200x", "_250x" };
+	constexpr const char *variantPostfix[] = { "", "_125x", "_150x", "_200x", "_250x", "_300x", "_350x" };
 	for (auto variantIndex = 0; variantIndex != kVariantsCount; variantIndex++) {
 		auto image = generateImage(variantIndex);
 		auto postfix = variantPostfix[variantIndex];
