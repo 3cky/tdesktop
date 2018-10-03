@@ -168,6 +168,8 @@ void SetupInterfaceScale(
 				case dbisOneAndQuarter: scale = dbisOne; break;
 				case dbisOneAndHalf: scale = dbisOneAndQuarter; break;
 				case dbisTwo: scale = dbisOneAndHalf; break;
+				case dbisTwoAndHalf: scale = dbisTwo; break;
+				case dbisThree: scale = dbisTwoAndHalf; break;
 				}
 			}
 		}
@@ -180,6 +182,8 @@ void SetupInterfaceScale(
 		case dbisOneAndQuarter: return qsl("125%");
 		case dbisOneAndHalf: return qsl("150%");
 		case dbisTwo: return qsl("200%");
+		case dbisTwoAndHalf: return qsl("250%");
+		case dbisThree: return qsl("300%");
 		}
 		Unexpected("Value in scale label.");
 	};
@@ -189,6 +193,8 @@ void SetupInterfaceScale(
 		case 1: return dbisOneAndQuarter;
 		case 2: return dbisOneAndHalf;
 		case 3: return dbisTwo;
+		case 4: return dbisTwoAndHalf;
+		case 5: return dbisThree;
 		}
 		Unexpected("Index in scaleByIndex.");
 	};
@@ -197,6 +203,8 @@ void SetupInterfaceScale(
 	slider->addSection(label(dbisOneAndQuarter));
 	slider->addSection(label(dbisOneAndHalf));
 	slider->addSection(label(dbisTwo));
+	slider->addSection(label(dbisTwoAndHalf));
+	slider->addSection(label(dbisThree));
 	slider->setActiveSectionFast(cEvalScale(cConfigScale()) - 1);
 	slider->sectionActivated(
 	) | rpl::start_with_next([=](int section) {
